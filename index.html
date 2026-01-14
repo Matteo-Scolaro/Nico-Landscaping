@@ -852,14 +852,16 @@ async function sendRequest(){
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQb0O4Uflz2hSW9Xy6me34SrU7N2MvH8C33a-n5cyXcwo5ARxppGHHQXmgoGul2rfI/exec";
 
   try{
-    const res = await fetch(SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+   await fetch(SCRIPT_URL, {
+  method: "POST",
+  mode: "no-cors",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload)
+});
 
-    if(!res.ok) throw new Error("Request failed");
-    alert("Sent! We'll get back to you shortly.");
+// In no-cors mode, the browser won't let you read the response.
+// So we assume it went through.
+alert("Sent! We'll get back to you shortly.");
 
     // Optional: clear form
     if(nameEl) nameEl.value = "";
