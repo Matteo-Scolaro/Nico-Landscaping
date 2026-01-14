@@ -728,6 +728,9 @@
             <label>Address / neighborhood</label>
             <input placeholder="e.g., Maple St (near downtown)" />
 
+            <label>Email or phone (required)</label>
+            <input id="contactInfo" placeholder="e.g., name@email.com or (416) 555-1234" required />
+
             <label>What do you need?</label>
             <textarea placeholder="Tell me what service you want + preferred days. For a quick quote, include: (1) front yard photo, (2) back yard photo."></textarea>
 
@@ -743,7 +746,6 @@
                 Send request (demo)
               </button>
               <span style="color: var(--muted2); font-size: 12px; margin-left: 8px;">
-                Want this to actually send? I can wire it to EmailJS / Google Forms.
               </span>
             </div>
           </div>
@@ -831,10 +833,19 @@ async function sendRequest(){
   const nameEl = document.querySelector('input[placeholder="e.g., Sarah"]');
   const addrEl = document.querySelector('input[placeholder="e.g., Maple St (near downtown)"]');
   const msgEl  = document.querySelector('textarea');
+  const contactEl = document.getElementById("contactInfo");
+const contactInfo = (contactEl?.value || "").trim();
+
+if (!contactInfo) {
+  alert("Please enter an email or phone number so we can reach you.");
+  contactEl?.focus();
+  return;
+}
 
   const payload = {
     name: (nameEl?.value || "").trim(),
     address: (addrEl?.value || "").trim(),
+    contactInfo: contactInfo,
     message: (msgEl?.value || "").trim(),
     photos: []
   };
@@ -855,7 +866,7 @@ async function sendRequest(){
    await fetch(SCRIPT_URL, {
   method: "POST",
   mode: "no-cors",
-  headers: { "Content-Type": "application/json" },
+  headers: { "Content-Type": "text/plain;charset=utf-8" },
   body: JSON.stringify(payload)
 });
 
