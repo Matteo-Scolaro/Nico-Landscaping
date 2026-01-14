@@ -652,7 +652,7 @@
         </div>
 
         <!-- Card 6 -->
-        <div class="card priceCard" style="cursor: default;">
+        <div class="card priceCard no-modal" style="cursor: default;">
   <div class="priceTop">
     <p class="svc">Payment</p>
     <span class="tag gray">How to pay</span>
@@ -933,8 +933,8 @@ alert("Sent! We'll get back to you shortly.");
       }
     }
 
-    document.querySelectorAll(".priceCard").forEach(card => {
-      card.addEventListener("click", () => openModalFromCard(card));
+    document.querySelectorAll(".priceCard:not(.no-modal)").forEach(card => {
+  card.addEventListener("click", () => openModalFromCard(card));
       card.addEventListener("keydown", (e) => {
         if(e.key === "Enter" || e.key === " "){
           e.preventDefault();
