@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GreenEdge Landscaping | Small Home Yard Care</title>
+  <meta name="description" content="Reliable landscaping for small homes: lawn mowing, trimming, cleanups, mulch and more. Quick quotes and fair pricing." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,0.07);
+      --panel-strong: rgba(255,255,255,0.10);
+      --border: rgba(255,255,255,0.14);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.72);
+      --muted2: rgba(255,255,255,0.55);
+      --accent: #65f2a5;
+      --accent2: #66a6ff;
+      --danger: #ff6b6b;
+
+      --radius: 18px;
+      --shadow: 0 14px 40px rgba(0,0,0,0.40);
+      --shadow2: 0 10px 25px rgba(0,0,0,0.35);
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(800px 400px at 20% 10%, rgba(102,166,255,0.18), transparent 60%),
+        radial-gradient(700px 500px at 80% 20%, rgba(101,242,165,0.16), transparent 60%),
+        radial-gradient(900px 700px at 50% 90%, rgba(255,255,255,0.06), transparent 60%),
+        var(--bg);
+      line-height: 1.35;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 22px 18px 80px; }
+
+    /* Header */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+    .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(101,242,165,0.95), rgba(102,166,255,0.85));
+      box-shadow: 0 10px 25px rgba(0,0,0,0.30);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .nav a {
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      transition: 160ms ease;
+    }
+    .nav a:hover {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 18px;
+      margin-top: 6px;
+      align-items: start;
+    }
+    @media (max-width: 880px) {
+      .hero { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow2);
+    }
+
+    .heroMain { padding: 26px; position: relative; overflow: hidden; }
+    .heroMain:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background: radial-gradient(600px 240px at 25% 0%, rgba(101,242,165,0.18), transparent 60%);
+      pointer-events:none;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(30px, 4.3vw, 46px);
+      line-height: 1.05;
+      letter-spacing: -0.6px;
+    }
+    .sub{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 60ch;
+    }
+    .heroActions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 650;
+      font-size: 14px;
+      transition: 160ms ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(255,255,255,0.18);
+    }
+    .btn.primary{
+      border-color: rgba(101,242,165,0.40);
+      background: linear-gradient(135deg, rgba(101,242,165,0.20), rgba(102,166,255,0.14));
+    }
+    .pillRow{
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+    .heroSide{
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+    .mini{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+    }
+    .mini h3{
+      margin: 0 0 6px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+    .mini p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    /* Sections */
+    section { margin-top: 22px; }
+    .sectionTitle{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 26px 0 12px;
+    }
+    .sectionTitle h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .sectionTitle span{
+      color: var(--muted2);
+      font-size: 13px;
+    }
+
+    /* Pricing grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 620px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .priceCard{
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 180ms ease;
+      transform-origin: center;
+      min-height: 172px;
+    }
+    .priceCard:hover{
+      transform: translateY(-2px) scale(1.02);
+      background: var(--panel-strong);
+      border-color: rgba(255,255,255,0.18);
+      box-shadow: var(--shadow);
+    }
+    .priceTop{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .tag{
+      font-size: 11px;
+      color: rgba(11,18,32,0.95);
+      background: rgba(101,242,165,0.85);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+    }
+    .tag.blue{ background: rgba(102,166,255,0.85); }
+    .tag.gray{
+      background: rgba(255,255,255,0.75);
+      color: rgba(11,18,32,0.88);
+    }
+    .svc{
+      margin: 0;
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -0.2px;
+    }
+    .price{
+      margin: 8px 0 0;
+      font-size: 24px;
+      font-weight: 850;
+      letter-spacing: -0.6px;
+    }
+    .price small{
+      font-size: 12px;
+      font-weight: 650;
+      color: var(--muted2);
+      letter-spacing: 0px;
+    }
+    .desc{
+      margin: 10px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .bullets{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .bullets li { margin: 6px 0; }
+
+    .hint{
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted2);
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 10px;
+    }
+
+    /* About + Contact */
+    .twoCol{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 880px){
+      .twoCol{ grid-template-columns: 1fr; }
+    }
+    .pad{ padding: 18px; }
+    .kv{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .kv .mini{ padding: 12px; }
+    .contactLine{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    input, textarea{
+      width:100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 12px 12px;
+      outline: none;
+      font-size: 14px;
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+    label{
+      display:block;
+      color: var(--muted2);
+      font-size: 12px;
+      margin: 10px 0 6px;
+    }
+
+    footer{
+      margin-top: 26px;
+      color: var(--muted2);
+      font-size: 12px;
+      text-align:center;
+    }
+
+    /* Modal (centered pricing detail) */
+    .backdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.60);
+      backdrop-filter: blur(6px);
+      display: none;
+      z-index: 40;
+    }
+    .backdrop.show{ display: block; }
+
+    .modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      z-index: 50;
+      padding: 20px;
+      place-items: center;
+    }
+    .modal.show{ display: grid; }
+
+    .modalCard{
+      width: min(720px, 100%);
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background:
+        radial-gradient(700px 260px at 20% 0%, rgba(101,242,165,0.17), transparent 60%),
+        rgba(15,22,40,0.92);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55);
+      overflow: hidden;
+      transform: translateY(10px) scale(0.98);
+      opacity: 0;
+      transition: 180ms ease;
+    }
+    .modal.show .modalCard{
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    .modalHeader{
+      display:flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 18px 0;
+    }
+    .modalHeader h3{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .close{
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 8px 10px;
+      cursor: pointer;
+      transition: 160ms ease;
+      font-weight: 750;
+    }
+    .close:hover{
+      background: rgba(255,255,255,0.10);
+      transform: translateY(-1px);
+    }
+    .modalBody{
+      padding: 14px 18px 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .modalGrid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 720px){
+      .modalGrid{ grid-template-columns: 1fr; }
+    }
+    .modalBox{
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .modalBox strong{ color: var(--text); }
+    .modalCTA{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    /* Make rest of site “secondary” while modal open */
+    body.modal-open .wrap{
+      filter: blur(2px);
+      opacity: 0.35;
+      transform: scale(0.995);
+      transition: 180ms ease;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="backdrop" id="backdrop"></div>
+
+  <div class="modal" id="modal" aria-hidden="true" role="dialog">
+    <div class="modalCard" aria-live="polite">
+      <div class="modalHeader">
+        <div>
+          <h3 id="mTitle">Service</h3>
+          <div style="margin-top:6px; display:flex; gap:8px; flex-wrap:wrap;">
+            <span class="tag gray" id="mTag">Popular</span>
+            <span class="tag blue" id="mTime">30–60 min</span>
+          </div>
+        </div>
+        <button class="close" id="closeBtn" aria-label="Close">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <div style="display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;">
+          <div class="price" id="mPrice">$45 <small>starting</small></div>
+          <div style="color: var(--muted2); font-size: 13px;" id="mNote">For small yards (typical starter homes).</div>
+        </div>
+
+        <p id="mDesc" style="margin-top:10px;">
+          Description goes here.
+        </p>
+
+        <div class="modalGrid">
+          <div class="modalBox">
+            <strong>What’s included</strong>
+            <ul class="bullets" id="mIncludes"></ul>
+          </div>
+          <div class="modalBox">
+            <strong>Typical add-ons</strong>
+            <ul class="bullets" id="mAddons"></ul>
+          </div>
+        </div>
+
+        <div class="modalCTA">
+          <a class="btn primary" id="mTextLink" href="#">Text for a quote</a>
+          <a class="btn" id="mEmailLink" href="#">Email</a>
+        </div>
+
+        <div class="hint" id="mFinePrint">
+          Final price depends on yard size, access, and condition. Quick estimates available by text with 2 photos.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <div style="font-size:14px; color: var(--muted2); font-weight:700;">GreenEdge Landscaping</div>
+          <div style="font-size:12px; color: var(--muted2);">Small home yard care • Fast quotes</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="#pricing">Pricing</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="card heroMain">
+        <h1>Clean, sharp yards — without the “big company” prices.</h1>
+        <p class="sub">
+          Solo-operated landscaping for smaller houses and starter homes. Reliable scheduling, tidy finish, and clear pricing.
+          Click a service below to see details.
+        </p>
+
+        <div class="heroActions">
+          <a class="btn primary" href="#pricing">View services & pricing</a>
+          <a class="btn" href="#contact">Get a quick quote</a>
+        </div>
+
+        <div class="pillRow">
+          <span class="pill">✔ Text quotes (2 photos)</span>
+          <span class="pill">✔ Weekly / bi-weekly mowing</span>
+          <span class="pill">✔ Cleanup & mulch</span>
+          <span class="pill">✔ Friendly, professional</span>
+        </div>
+      </div>
+
+      <div class="card heroSide">
+        <div class="mini">
+          <h3>Service area</h3>
+          <p>Update this with your city + nearby neighborhoods.</p>
+        </div>
+        <div class="mini">
+          <h3>Typical response time</h3>
+          <p>Same day / within 24 hours (edit as needed).</p>
+        </div>
+        <div class="mini">
+          <h3>Payment</h3>
+          <p>E-Transfer / cash (add cards if you want later).</p>
+        </div>
+      </div>
+    </div>
+
+    <section id="pricing">
+      <div class="sectionTitle">
+        <h2>Services & pricing</h2>
+        <span>Small-home pricing • “Starting at” rates</span>
+      </div>
+
+      <div class="grid">
+        <!-- Card 1 -->
+        <div class="card priceCard"
+             data-title="Lawn Mowing"
+             data-tag="Most popular"
+             data-time="30–45 min"
+             data-price="$45"
+             data-note="Starting price for small yards (front + back)."
+             data-desc="Clean cut, straight lines, and a tidy finish. Great for weekly or bi-weekly maintenance."
+             data-includes='["Mow front + back (small yard)","Trim around edges/obstacles","Blow off driveway + walkways","Bagging optional (see add-ons)"]'
+             data-addons='["Bag + dispose clippings: +$10–$20","Overgrown/first cut: +$15–$35","Extra side yard / corner lot: +$10–$25"]'>
+          <div class="priceTop">
+            <p class="svc">Lawn Mowing</p>
+            <span class="tag">Most popular</span>
+          </div>
+          <p class="price">$45 <small>starting</small></p>
+          <p class="desc">Small yards • weekly / bi-weekly • tidy finish</p>
+          <div class="hint">Click for details</div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card priceCard"
+             data-title="Edging & Line Trim"
+             data-tag="Sharp look"
+             data-time="20–40 min"
+             data-price="$30"
+             data-note="Best paired with mowing."
+             data-desc="Crisp edges along sidewalks and driveways — the detail that makes the whole yard look professional."
+             data-includes='["Edge sidewalks/driveway (small home)","Trim along fences/around trees","Blow off hard surfaces"]'
+             data-addons='["Heavy growth / thick edges: +$10–$25","Corner lot edging: +$10–$20","Cleanup haul-away: quoted"]'>
+          <div class="priceTop">
+            <p class="svc">Edging & Line Trim</p>
+            <span class="tag blue">Sharp look</span>
+          </div>
+          <p class="price">$30 <small>starting</small></p>
+          <p class="desc">Crisp edges • fast upgrade • great add-on</p>
+          <div class="hint">Click for details</div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card priceCard"
+             data-title="Hedge / Shrub Trimming"
+             data-tag="By length"
+             data-time="30–90 min"
+             data-price="$45"
+             data-note="Price depends on number + height."
+             data-desc="Neat shaping and cleanup. Ideal for small hedge lines and a few shrubs around the house."
+             data-includes='["Trim up to ~10–15 ft total hedge (small)","Shape shrubs (basic)","Bagging on-site (small amount)"]'
+             data-addons='["Tall hedges / ladder work: quoted","Large volume disposal: +$15–$40","Precision shaping: quoted"]'>
+          <div class="priceTop">
+            <p class="svc">Hedge / Shrub Trimming</p>
+            <span class="tag gray">By length</span>
+          </div>
+          <p class="price">$45 <small>starting</small></p>
+          <p class="desc">Neat shaping • cleanup included (small amount)</p>
+          <div class="hint">Click for details</div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card priceCard"
+             data-title="Spring / Fall Cleanup"
+             data-tag="Seasonal"
+             data-time="1–3 hours"
+             data-price="$120"
+             data-note="Small yards, light–medium debris."
+             data-desc="Leaves, sticks, garden tidy, and a clean reset. Great before selling, guests, or the new season."
+             data-includes='["Leaf + debris collection (small yard)","Garden bed tidy (light)","Blow off hard surfaces","Bagging + stacking ready for pickup"]'
+             data-addons='["Haul-away/disposal: +$25–$80","Heavy debris / neglected yard: quoted","Gutter cleaning: quoted"]'>
+          <div class="priceTop">
+            <p class="svc">Spring / Fall Cleanup</p>
+            <span class="tag">Seasonal</span>
+          </div>
+          <p class="price">$120 <small>starting</small></p>
+          <p class="desc">Fresh reset • before season change • curb appeal</p>
+          <div class="hint">Click for details</div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card priceCard"
+             data-title="Mulch Refresh (Small Beds)"
+             data-tag="Curb appeal"
+             data-time="1–2 hours"
+             data-price="$150"
+             data-note="Install-only for 6–10 bags (client provides mulch)."
+             data-desc="Clean edges and a fresh mulch layer to make the front of the house look ‘done’."
+             data-includes='["Bed prep (light weed pull)","Even mulch spread (6–10 bags)","Final tidy + blow off surfaces"]'
+             data-addons='["Mulch supply + delivery: quoted","Deep weeding/bed rehab: quoted","New edging line cut: +$20–$50"]'>
+          <div class="priceTop">
+            <p class="svc">Mulch Refresh</p>
+            <span class="tag blue">Curb appeal</span>
+          </div>
+          <p class="price">$150 <small>starting</small></p>
+          <p class="desc">Small garden beds • clean finish • big visual impact</p>
+          <div class="hint">Click for details</div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card priceCard"
+             data-title="Small Garden Bed Install"
+             data-tag="New look"
+             data-time="Half day"
+             data-price="$350"
+             data-note="Starter bed (simple shape), install-only."
+             data-desc="A simple new bed for a front corner or along the walkway — sized for small homes."
+             data-includes='["Layout + simple shape","Topsoil level (basic)","Mulch layer (if provided)","Clean site + haul small debris"]'
+             data-addons='["Plants + soil supply: quoted","Stone/brick edging: quoted","Large excavation or roots: quoted"]'>
+          <div class="priceTop">
+            <p class="svc">Garden Bed Install</p>
+            <span class="tag gray">New look</span>
+          </div>
+          <p class="price">$350 <small>starting</small></p>
+          <p class="desc">Simple bed • neat edges • perfect starter upgrade</p>
+          <div class="hint">Click for details</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="sectionTitle">
+        <h2>About</h2>
+        <span>Solo business • reliable, respectful, tidy</span>
+      </div>
+
+      <div class="twoCol">
+        <div class="card pad">
+          <h3 style="margin:0 0 8px;">A one-person crew that shows up.</h3>
+          <p style="margin:0; color: var(--muted); font-size: 14px;">
+            This is a small local landscaping service focused on smaller houses and starter homes.
+            The goal is simple: consistent work, clean lines, and leaving the site better than I found it.
+          </p>
+
+          <div class="kv">
+            <div class="mini">
+              <h3>Scheduling</h3>
+              <p>Weekly / bi-weekly maintenance available.</p>
+            </div>
+            <div class="mini">
+              <h3>Quotes</h3>
+              <p>Text 2 photos for a fast estimate.</p>
+            </div>
+            <div class="mini">
+              <h3>Cleanup</h3>
+              <p>Driveway + walkways always blown off.</p>
+            </div>
+            <div class="mini">
+              <h3>Respect</h3>
+              <p>Quiet, careful around property.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card pad" id="contact">
+          <h3 style="margin:0 0 8px;">Contact</h3>
+          <p style="margin:0; color: var(--muted); font-size: 14px;">
+            Replace the placeholders below with real info.
+          </p>
+
+          <div class="contactLine">
+            <a class="btn primary" href="tel:+10000000000">Call: (000) 000-0000</a>
+            <a class="btn" href="sms:+10000000000">Text for quote</a>
+          </div>
+
+          <div style="margin-top: 12px;">
+            <label>Your name</label>
+            <input placeholder="e.g., Sarah" />
+
+            <label>Address / neighborhood</label>
+            <input placeholder="e.g., Maple St (near downtown)" />
+
+            <label>What do you need?</label>
+            <textarea placeholder="Tell me what service you want + preferred days. For a quick quote, include: (1) front yard photo, (2) back yard photo."></textarea>
+
+            <div style="margin-top: 10px;">
+              <button class="btn primary" type="button" onclick="alert('This is a demo form. For a real form, connect to EmailJS or a Google Form.');">
+                Send request (demo)
+              </button>
+              <span style="color: var(--muted2); font-size: 12px; margin-left: 8px;">
+                Want this to actually send? I can wire it to EmailJS / Google Forms.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="yr"></span> GreenEdge Landscaping • Built for small homes • Update name, phone, and area
+    </footer>
+  </div>
+
+  <script>
+    // Year
+    document.getElementById("yr").textContent = new Date().getFullYear();
+
+    // Modal logic
+    const backdrop = document.getElementById("backdrop");
+    const modal = document.getElementById("modal");
+    const closeBtn = document.getElementById("closeBtn");
+
+    const mTitle = document.getElementById("mTitle");
+    const mTag = document.getElementById("mTag");
+    const mTime = document.getElementById("mTime");
+    const mPrice = document.getElementById("mPrice");
+    const mNote = document.getElementById("mNote");
+    const mDesc = document.getElementById("mDesc");
+    const mIncludes = document.getElementById("mIncludes");
+    const mAddons = document.getElementById("mAddons");
+    const mTextLink = document.getElementById("mTextLink");
+    const mEmailLink = document.getElementById("mEmailLink");
+
+    // Update these with real contact info:
+    const PHONE = "+10000000000"; // e.g. +14161234567
+    const EMAIL = "youremail@example.com";
+
+    function openModalFromCard(card){
+      const title = card.dataset.title || "Service";
+      const tag = card.dataset.tag || "Popular";
+      const time = card.dataset.time || "30–60 min";
+      const price = card.dataset.price || "$0";
+      const note = card.dataset.note || "";
+      const desc = card.dataset.desc || "";
+
+      const includes = safeParseArray(card.dataset.includes);
+      const addons = safeParseArray(card.dataset.addons);
+
+      mTitle.textContent = title;
+      mTag.textContent = tag;
+      mTime.textContent = time;
+      mPrice.innerHTML = `${price} <small>starting</small>`;
+      mNote.textContent = note;
+      mDesc.textContent = desc;
+
+      renderList(mIncludes, includes);
+      renderList(mAddons, addons);
+
+      // Simple message templates
+      const msg = encodeURIComponent(`Hi! I'm interested in: ${title}. My address is _____. Can you give me a quote?`);
+      mTextLink.href = `sms:${PHONE}?&body=${msg}`;
+      mEmailLink.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Landscaping quote request")}&body=${msg}`;
+
+      document.body.classList.add("modal-open");
+      backdrop.classList.add("show");
+      modal.classList.add("show");
+      modal.setAttribute("aria-hidden", "false");
+    }
+
+    function closeModal(){
+      document.body.classList.remove("modal-open");
+      backdrop.classList.remove("show");
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    function renderList(ul, items){
+      ul.innerHTML = "";
+      items.forEach(t => {
+        const li = document.createElement("li");
+        li.textContent = t;
+        ul.appendChild(li);
+      });
+    }
+
+    function safeParseArray(str){
+      try{
+        const v = JSON.parse(str || "[]");
+        return Array.isArray(v) ? v : [];
+      }catch(e){
+        return [];
+      }
+    }
+
+    document.querySelectorAll(".priceCard").forEach(card => {
+      card.addEventListener("click", () => openModalFromCard(card));
+      card.addEventListener("keydown", (e) => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          openModalFromCard(card);
+        }
+      });
+      card.setAttribute("tabindex","0");
+      card.setAttribute("role","button");
+      card.setAttribute("aria-label","Open pricing details");
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("click", closeModal);
+
+    // Close on ESC
+    window.addEventListener("keydown", (e) => {
+      if(e.key === "Escape" && modal.classList.contains("show")){
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
