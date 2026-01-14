@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GreenEdge Landscaping | Small Home Yard Care</title>
+  <title>Nico Landscaping | Small Home Yard Care</title>
   <meta name="description" content="Reliable landscaping for small homes: lawn mowing, trimming, cleanups, mulch and more. Quick quotes and fair pricing." />
 
   <style>
@@ -731,8 +731,15 @@
             <label>What do you need?</label>
             <textarea placeholder="Tell me what service you want + preferred days. For a quick quote, include: (1) front yard photo, (2) back yard photo."></textarea>
 
+            <label>Photos (optional)</label>
+            <input id="photos" type="file" accept="image/*" multiple />
+            <div style="margin-top:8px; color: var(--muted2); font-size:12px;">
+            Tip: add 2 photos (front + back) for a fast quote.
+            </div>
+            <div id="photoPreview" style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;"></div>
+            
             <div style="margin-top: 10px;">
-              <button class="btn primary" type="button" onclick="alert('This is a demo form. For a real form, connect to EmailJS or a Google Form.');">
+              <button class="btn primary" type="button" onclick="sendRequest()">
                 Send request (demo)
               </button>
               <span style="color: var(--muted2); font-size: 12px; margin-left: 8px;">
@@ -773,6 +780,100 @@
     const PHONE = "+10000000000"; // e.g. +14161234567
     const EMAIL = "youremail@example.com";
 
+// --- Photo upload + preview ---
+const photoInput = document.getElementById("photos");
+const photoPreview = document.getElementById("photoPreview");
+let selectedPhotos = [];
+
+photoInput?.addEventListener("change", () => {
+  selectedPhotos = Array.from(photoInput.files || []);
+  photoPreview.innerHTML = "";
+
+  // Basic limits (adjust if you want)
+  const maxFiles = 6;
+  const maxEachMB = 5;
+
+  selectedPhotos = selectedPhotos.slice(0, maxFiles).filter(f => (f.size / (1024*1024)) <= maxEachMB);
+
+  selectedPhotos.forEach(file => {
+    const url = URL.createObjectURL(file);
+    const img = document.createElement("img");
+    img.src = url;
+    img.alt = "Uploaded photo preview";
+    img.style.width = "80px";
+    img.style.height = "80px";
+    img.style.objectFit = "cover";
+    img.style.borderRadius = "14px";
+    img.style.border = "1px solid rgba(255,255,255,0.14)";
+    photoPreview.appendChild(img);
+  });
+});
+
+// --- Helper: file -> base64 (for Apps Script) ---
+function fileToBase64(file){
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      // result looks like: data:image/jpeg;base64,XXXX
+      const result = String(reader.result || "");
+      const base64 = result.split(",")[1] || "";
+      resolve(base64);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// --- SEND FORM (replace demo alert) ---
+async function sendRequest(){
+  // Grab the inputs in the contact box (they currently have no IDs)
+  // We'll select them by placeholder text, as in your current HTML:
+  const nameEl = document.querySelector('input[placeholder="e.g., Sarah"]');
+  const addrEl = document.querySelector('input[placeholder="e.g., Maple St (near downtown)"]');
+  const msgEl  = document.querySelector('textarea');
+
+  const payload = {
+    name: (nameEl?.value || "").trim(),
+    address: (addrEl?.value || "").trim(),
+    message: (msgEl?.value || "").trim(),
+    photos: []
+  };
+
+  // Convert selected images to base64 for the script
+  for (const f of selectedPhotos) {
+    payload.photos.push({
+      filename: f.name,
+      mimeType: f.type || "application/octet-stream",
+      base64: await fileToBase64(f)
+    });
+  }
+
+  // IMPORTANT: put your Google Apps Script Web App URL here
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzQb0O4Uflz2hSW9Xy6me34SrU7N2MvH8C33a-n5cyXcwo5ARxppGHHQXmgoGul2rfI/exec";
+
+  try{
+    const res = await fetch(SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    if(!res.ok) throw new Error("Request failed");
+    alert("Sent! We'll get back to you shortly.");
+
+    // Optional: clear form
+    if(nameEl) nameEl.value = "";
+    if(addrEl) addrEl.value = "";
+    if(msgEl) msgEl.value = "";
+    if(photoInput) photoInput.value = "";
+    selectedPhotos = [];
+    if(photoPreview) photoPreview.innerHTML = "";
+
+  }catch(e){
+    alert("Could not send right now. Please text or call instead.");
+  }
+}
+    
     function openModalFromCard(card){
       const title = card.dataset.title || "Service";
       const tag = card.dataset.tag || "Popular";
